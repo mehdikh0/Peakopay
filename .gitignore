@@ -1,4 +1,3 @@
-
 # Release packages
 /release/*.apk
 /release/*.zip
@@ -7,9 +6,33 @@
 .env
 .env.*
 !.env.example
+/backend/config/config.php
 *.keystore
 *.jks
 local.properties
+
+# Backend runtime data
+/backend/storage/logs/*
+!/backend/storage/logs/.gitkeep
+/backend/storage/cache/*
+!/backend/storage/cache/.gitkeep
+/backend/storage/sessions/*
+!/backend/storage/sessions/.gitkeep
+
+# Android build artifacts and signing secrets
+/android/.gradle/
+/android/.kotlin/
+/android/build/
+/android/app/build/
+/android/local.properties
+/android/keystore/
+/android/keystore.properties
+/android/.idea/
+/android/*.iml
+
+# Release archives and internal history
+/packages/
+/docs/dev-history/
 
 # Local Ubuntu files
 .sudo_as_admin_successful
@@ -17,3 +40,7 @@ local.properties
 
 # Duplicate release metadata
 /release/.github/
+
+# Operating system files
+.DS_Store
+Thumbs.db
