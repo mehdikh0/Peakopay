@@ -1,6 +1,6 @@
 # Release packages
-/release/*.apk
-/release/*.zip
+/RELEASES/*.apk
+/RELEASES/*.zip
 
 # Local secrets and environment
 .env
@@ -39,7 +39,7 @@ local.properties
 .wget-hsts
 
 # Duplicate release metadata
-/release/.github/
+/RELEASES/.github/
 
 # Operating system files
 .DS_Store
