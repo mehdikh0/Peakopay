@@ -1,0 +1,63 @@
+# ══════════════════════════════════════════════════════════════════════
+# Peakopay — root .htaccess (Apache / LiteSpeed, cPanel)
+#
+# Authoritative deployment layout:
+#   Document Root = this directory (e.g. public_html/pay)
+#   Front controller: index.php   ·   Public assets: assets/
+#
+# This single file replaces the old backend/public/.htaccess split.
+# Compatible with LiteSpeed: no php_value/php_flag directives are used.
+# ══════════════════════════════════════════════════════════════════════
+
+Options -Indexes
+AddDefaultCharset UTF-8
+
+# ---- Preserve Authorization header (CGI/FastCGI hosts strip it) ----------
+# برخی هاست‌های cPanel هدر Authorization را به PHP نمی‌رسانند؛ این دو خط
+# آن را حفظ می‌کنند. (سرور افزونه به‌جای آن هدر X-Peakopay-Key و پشتیبان
+# بدنه JSON را هم می‌پذیرد — سه لایه اطمینان.)
+<IfModule mod_setenvif.c>
+    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+</IfModule>
+
+# ---- Security headers -----------------------------------------------------
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ---- Deny sensitive paths (works even if an inner .htaccess is removed) --
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Application source, config, migrations, storage, docs, tests → 403
+    RewriteRule ^(app|config|migrations|storage|docs|tests)(/|$) - [F,L]
+
+    # Dotfiles (.htaccess, .env, .git…) → 403
+    RewriteRule (^|/)\. - [F,L]
+</IfModule>
+
+# ---- Front controller: everything that is not a real file → index.php ----
+<IfModule mod_rewrite.c>
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+# ---- Belt & suspenders: never serve these file types ---------------------
+<FilesMatch "\.(sql|log|md|lock|env|ini|sqlite|db)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+<IfModule !mod_rewrite.c>
+    # Without mod_rewrite (very unusual on cPanel/LiteSpeed): the static
+    # assets and index.php still work; route URLs need mod_rewrite.
+    # See docs/CPANEL.md → Troubleshooting.
+</IfModule>

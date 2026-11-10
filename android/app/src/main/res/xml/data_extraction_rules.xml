@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- حذف اطلاعات حساس از بکاپ: راز دستگاه هرگز در بکاپ ذخیره نمی‌شود -->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="sharedpref" path="device_session.xml" />
+        <exclude domain="database" path="peakopay.db" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="sharedpref" path="device_session.xml" />
+        <exclude domain="database" path="peakopay.db" />
+    </device-transfer>
+</data-extraction-rules>

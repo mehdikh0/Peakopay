@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ═══ ممیزی دسترسی‌ها (حداقلِ لازم — مستند در docs/ANDROID-PERMISSIONS.md) ═══
+         RECEIVE_SMS (runtime): دریافت پیامک بانکی از طریق SMS_RECEIVED broadcast
+         POST_NOTIFICATIONS (runtime از اندروید 13): اعلان تأیید پرداخت + اعلان سرویس
+         FOREGROUND_SERVICE + FOREGROUND_SERVICE_SPECIAL_USE: سرویس همیشه‌روشن (نوع specialUse)
+         RECEIVE_BOOT_COMPLETED: راه‌اندازی مجدد سرویس/کارها پس از ری‌استارت گوشی
+         REQUEST_IGNORE_BATTERY_OPTIMIZATIONS: دکمه رسمی «بدون محدودیت باتری»
+         READ_SMS حذف شد — گیرنده broadcast فقط با RECEIVE_SMS کار می‌کند و صندوق پیامک خوانده نمی‌شود.
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <application
+        android:name=".PeakopayApp"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Peakopay"
+        tools:targetApi="34">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.Peakopay.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- دریافت پیامک بانکی -->
+        <receiver
+            android:name=".sms.SmsReceiver"
+            android:exported="true"
+            android:permission="android.permission.BROADCAST_SMS"
+            tools:ignore="ExportedReceiver">
+            <intent-filter android:priority="999">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- راه‌اندازی مجدد صف ارسال پس از ری‌استارت گوشی -->
+        <receiver
+            android:name=".work.BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <!-- مقداردهی اولیه WorkManager به‌صورت دستی (PeakopayApp پیاده‌سازی Configuration.Provider است) -->
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup"
+                tools:node="remove" />
+        </provider>
+        <!-- سرویس همیشه‌روشن (اختیاری، قابل خاموش‌کردن از «وضعیت»): keep process
+             برای دریافت/ارسال سریع تراکنش‌ها. نوع specialUse با توضیح زیر. -->
+        <service
+            android:name=".service.PeakopayService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Merchant bank-SMS payment relay: keeps upload of verified bank transactions responsive while customer waits on payment page" />
+        </service>
+    </application>
+</manifest>

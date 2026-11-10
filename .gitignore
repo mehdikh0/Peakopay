@@ -1,0 +1,19 @@
+
+# Release packages
+/release/*.apk
+/release/*.zip
+
+# Local secrets and environment
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+local.properties
+
+# Local Ubuntu files
+.sudo_as_admin_successful
+.wget-hsts
+
+# Duplicate release metadata
+/release/.github/

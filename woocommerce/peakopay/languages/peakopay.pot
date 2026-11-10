@@ -1,0 +1,360 @@
+# Peakopay translation template.
+# Copyright (C) Peakopay contributors
+# This file is distributed under the GPL-2.0-or-later license.
+msgid ""
+msgstr ""
+"Project-Id-Version: Peakopay 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/peakopay\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fa\n"
+"POT-Creation-Date: 2026-10-03 12:00+0330\n"
+
+#: peakopay.php:186
+msgid "(شناسه فروشگاه/کلید API و آدرس سرور را دقیق بررسی کنید — بدون / انتها.)"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:41
+msgid "Peakopay (کارت به کارت)"
+msgstr ""
+
+#: includes/class-peakopay-privacy.php:75
+msgid "Peakopay — سوابق پرداخت سفارش"
+msgstr ""
+
+#: includes/class-peakopay-privacy.php:112
+msgid "Peakopay — پرداخت سفارش"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:305
+#. translators: %1$s: error message, %2$s: error code
+msgid "Peakopay: ساخت پرداخت ناموفق بود — %1$s (%2$s)"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:324
+msgid "Peakopay: صفحه پرداخت برای مشتری ساخته شد."
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:126
+#. translators: 1: expected amount, 2: received amount
+msgid "Peakopay: عدم تطابق مبلغ — انتظار %1$s ریال، دریافتی %2$s ریال. بررسی دستی لازم است."
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:178
+msgid "Peakopay: مشتری اعلام کرد وجه را منتقل کرده است؛ در انتظار تطبیق تراکنش بانکی."
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:151
+msgid "Peakopay: مهلت پرداخت به پایان رسید و وجهی وصول نشد."
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:154
+msgid "Peakopay: مهلت پرداخت به پایان رسید."
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:150
+msgid "Peakopay: نشست پرداخت لغو شد."
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:218
+#. translators: 1: verification source, 2: bank name, 3: tracking code
+msgid "Peakopay: پرداخت تأیید شد (%1$s) — بانک: %2$s — کد رهگیری: %3$s"
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:166
+msgid "Peakopay: پرداخت ناموفق بود (تأیید سرور)."
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:107
+msgid "Peakopay: یک پرداخت «تستی» برای این سفارش تأیید شد؛ وضعیت سفارش تغییر نکرد."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:86
+msgid "آدرس سرور Peakopay"
+msgstr ""
+
+#: peakopay.php:153
+msgid "ابتدا آدرس سرور، شناسه فروشگاه و کلید API را وارد کنید."
+msgstr ""
+
+#: peakopay.php:188
+msgid "اتصال برقرار نشد."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:81
+msgid "اتصال به سرور Peakopay"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:366
+msgid "استعلام صفحه تشکر"
+msgstr ""
+
+#: includes/class-peakopay-privacy.php:67
+msgid "افزونه روی سفارش، سوابق پرداخت (شناسه نشست، مبلغ، بانک، کد رهگیری و وضعیت تأیید) را ذخیره می‌کند؛ این سوابق تا زمانی که سفارش موجود است نگه داشته می‌شوند و بخشی از گزارش مالی فروشگاه هستند."
+msgstr ""
+
+#: peakopay.php:85
+msgid "افزونه ووکامرس فعال نیست. افزونه Peakopay فقط همراه ووکامرس کار می‌کند و تا پیش از فعال‌سازی آن، غیرفعال می‌ماند (هیچ خطایی ایجاد نمی‌کند)."
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:46
+msgid "امضای وب‌هوک معتبر نیست."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:146
+msgid "انصراف سفارش منقضی"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:154
+msgid "اگر در پنل Peakopay «حالت تست» روشن باشد، تراکنش‌های تستی با برچسب «تست» ساخته می‌شوند و هرگز سفارش واقعی را تکمیل نمی‌کنند. برای آزمایش، از پنل Peakopay (ابزارهای تست) استفاده کنید."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:148
+msgid "اگر مهلت پرداخت تمام شود و وجهی نرسد، سفارش به «لغوشده» تغییر کند"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:83
+msgid "این مقادیر را از «مرحله ۶ نصب» پنل Peakopay (یا تنظیمات ← اتصال ووکامرس) کپی کنید. آدرس وب‌هوک که در پنل وارد می‌کنید:"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:203
+msgid "با کلیک روی دکمه، اتصال به سرور و اعتبار شناسه فروشگاه و کلید API (با مقادیر فرمِ ذخیره‌نشده) بررسی می‌شود."
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:54
+msgid "بدنه وب‌هوک معتبر نیست."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:88
+msgid "بدون / انتها."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:111
+msgid "برای اعتبارسنجی پیام‌های ارسالی سرور Peakopay به «آدرس فروشگاه/wc-api/peakopay»."
+msgstr ""
+
+#: includes/class-peakopay-privacy.php:65
+msgid "برای پرداخت کارت به کارت، افزونه Peakopay اطلاعات حداقلی سفارش (شماره سفارش، مبلغ، نام و شماره تلفن صورتحساب) را به سرور خودمیزبان Peakopay همین فروشگاه ارسال می‌کند تا صفحه پرداخت و تطبیق واریز ساخته شود. این سرور متعلق به خود فروشنده است و داده‌ای به هیچ سرویس ثالث دیگری فرستاده نمی‌شود."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:199
+msgid "تست اتصال"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:201
+msgid "تست اتصال به Peakopay"
+msgstr ""
+
+#: peakopay.php:194
+msgid "تنظیمات"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:115
+msgid "تنظیمات پرداخت"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:76
+msgid "توضیح کوتاه برای مشتری در صفحه پرداخت."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:74
+msgid "توضیحات درگاه"
+msgstr ""
+
+#: peakopay.php:167
+msgid "تومان"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:122
+msgid "تومان (IRT)"
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:115
+#. translators: %s: order id
+msgid "توکن وب‌هوک با نشست سفارش #%s هم‌خوانی ندارد."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:138
+msgid "ثبت لاگ دیباگ"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:152
+msgid "حالت تست"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:302
+msgid "خطای نامشخص"
+msgstr ""
+
+#: includes/class-peakopay-api.php:145
+msgid "خطای نامشخص از سرور Peakopay."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:307
+#. translators: %s: error code
+msgid "در حال حاضر امکان شروع پرداخت نیست؛ لطفاً کمی بعد دوباره تلاش کنید یا با پشتیبانی تماس بگیرید. (%s)"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:268
+msgid "درگاه Peakopay به‌درستی تنظیم نشده است؛ لطفاً با پشتیبانی فروشگاه تماس بگیرید. (کد: PP-WOO-CONFIG)"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:63
+msgid "درگاه Peakopay فعال باشد"
+msgstr ""
+
+#: peakopay.php:134
+msgid "دسترسی لازم را ندارید."
+msgstr ""
+
+#: peakopay.php:176
+// translators: %s = active Android device count
+msgid "دستگاه‌های اندروید فعال: %s"
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:84
+msgid "رویداد ناشناخته دریافت شد:"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:140
+msgid "رویدادهای درگاه (ساخت پرداخت، وب‌هوک‌ها، خطاها) در لاگ ووکامرس ثبت شود"
+msgstr ""
+
+#: peakopay.php:167
+msgid "ریال"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:123
+msgid "ریال (IRR)"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:285
+msgid "سفارش #%s"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:257
+msgid "سفارش یافت نشد."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:97
+msgid "شناسه عمومی فروشگاه در Peakopay."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:94
+msgid "شناسه فروشگاه (st_…)"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:67
+msgid "عنوان درگاه"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:69
+msgid "عنوانی که مشتری در صفحه پرداخت (checkout) می‌بیند."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:61
+msgid "فعال‌سازی"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:142
+msgid "لاگ‌ها در WooCommerce ← Status ← Logs (فایل peakopay-…) قابل مشاهده‌اند و هیچ کلید محرمانه‌ای در آن‌ها ثبت نمی‌شود."
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:124
+#. translators: 1: webhook amount, 2: order id, 3: session amount
+msgid "مبلغ وب‌هوک (%1$d ریال) با مبلغ نشست سفارش #%2$s (%3$d ریال) برابر نیست — سفارش تکمیل نشد."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:88
+msgid "مثال:"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:133
+msgid "مهلت درخواست‌های ساخت پرداخت/استعلام به سرور Peakopay (۵ تا ۶۰)."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:130
+msgid "مهلت پاسخ سرور (ثانیه)"
+msgstr ""
+
+#: peakopay.php:164, includes/class-peakopay-webhook.php:220
+msgid "نامشخص"
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:221
+msgid "ندارد"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:119
+msgid "واحد مبالغ فروشگاه"
+msgstr ""
+
+#: peakopay.php:169
+// translators: %1$s = unit label, %2$s = currency code
+msgid "واحد پول فروشگاه: %1$s (%2$s)"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:126
+msgid "واحدی که قیمت‌های ووکامرس شما در آن وارد شده‌اند. تبدیل به ریال شفاف است و مبلغ نمایش‌داده‌شده به مشتری دقیقاً برابر مبلغ تراکنش خواهد بود."
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:131, includes/class-peakopay-webhook.php:198
+msgid "وب‌هوک"
+msgstr ""
+
+#: includes/class-peakopay-webhook.php:101
+#. translators: %s: order id
+msgid "وب‌هوک payment.paid برای سفارش ناشناخته #%s دریافت شد."
+msgstr ""
+
+#: includes/class-peakopay-api.php:138
+msgid "پاسخ سرور Peakopay قابل خواندن نبود."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:316
+msgid "پاسخ سرور Peakopay کامل نبود؛ لطفاً دوباره تلاش کنید."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:42
+msgid "پرداخت کارت به کارت با تطبیق خودکار تراکنش از طریق اپلیکیشن Peakopay. سفارش فقط با تأیید سرور Peakopay تکمیل می‌شود؛ دکمه «پرداخت کردم» هرگز مبنای تأیید نیست."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:77
+msgid "پس از ثبت سفارش، شماره کارت مقصد و مبلغ دقیق به شما نمایش داده می‌شود. پس از انتقال وجه، سفارش به‌صورت خودکار تأیید می‌شود."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:49, includes/class-peakopay-blocks.php:66
+msgid "پس از ثبت سفارش، شماره کارت مقصد و مبلغ دقیق به شما نمایش داده می‌شود. پس از انتقال، تأیید به‌صورت خودکار انجام می‌شود."
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:48, includes/class-peakopay-gateway.php:70, includes/class-peakopay-blocks.php:65
+msgid "کارت به کارت (Peakopay)"
+msgstr ""
+
+#: peakopay.php:172
+// translators: %1$s = active card count, %2$s = registered SMS sender count
+msgid "کارت‌های فعال: %1$s — فرستنده‌های پیامک ثبت‌شده: %2$s"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:101
+msgid "کلید API فروشگاه (hpk_…)"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:108
+msgid "کلید امضای وب‌هوک (whsec_…)"
+msgstr ""
+
+#: includes/class-peakopay-gateway.php:104
+msgid "کلید فقط یک‌بار هنگام ساخت نمایش داده می‌شود؛ اگر آن را ندارید، از پنل Peakopay کلید جدید بسازید."
+msgstr ""
+
+#: peakopay.php:179
+msgid "⚠ سرور در حالت تست است — پرداخت‌های واقعی ثبت نمی‌شوند."
+msgstr ""
+
+#: peakopay.php:163
+#. translators: 1: store name, 2: server version
+msgid "✅ اتصال برقرار است — فروشگاه «%1$s»، نسخه سرور %2$s."
+msgstr ""
+

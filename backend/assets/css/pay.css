@@ -1,0 +1,250 @@
+/* ============================================================
+   Peakopay — customer payment page (mobile-first, RTL, single viewport)
+   هدف: در موبایل همه‌چیز در یک صفحه بدون اسکرول — با حفظ انیمیشن‌ها.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('../font/Vazirmatn-Regular.woff2') format('woff2');
+  font-weight: 400; font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('../font/Vazirmatn-Medium.woff2') format('woff2');
+  font-weight: 500; font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('../font/Vazirmatn-Bold.woff2') format('woff2');
+  font-weight: 700; font-display: swap;
+}
+
+:root {
+  --brand: #5b5ce8;
+  --brand-2: #8b5cf6;
+  --ink: #1c2140;
+  --muted: #6b7390;
+  --line: #e7e9f5;
+  --ok: #16a34a;
+  --warn: #d97706;
+  --bad: #dc2626;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; height: 100%; }
+body {
+  font-family: 'Vazirmatn', Tahoma, sans-serif;
+  background:
+    radial-gradient(900px 480px at 85% -10%, rgba(139, 92, 246, .16), transparent 60%),
+    radial-gradient(700px 420px at -10% 0%, rgba(91, 92, 232, .14), transparent 55%),
+    #f4f5fb;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.8;
+}
+.mono { font-variant-numeric: tabular-nums; letter-spacing: .5px; }
+
+/* ── اسکلت تک‌صفحه‌ای: ستون فلکس با ارتفاع کامل ── */
+.hp-page {
+  max-width: 470px; margin: 0 auto;
+  height: 100dvh;
+  display: flex; flex-direction: column;
+  padding: clamp(8px, 1.5vh, 16px) 14px calc(clamp(6px, 1vh, 12px) + env(safe-area-inset-bottom, 0px));
+}
+@supports not (height: 100dvh) { .hp-page { height: 100vh; } }
+.hp-main {
+  flex: 1; min-height: 0;
+  display: flex; flex-direction: column;
+  justify-content: space-evenly;
+  gap: clamp(6px, 1.2vh, 12px);
+  padding: clamp(6px, 1.2vh, 12px) 0;
+}
+
+/* ── هدر: برند + تایمر جمع‌شده ── */
+.hp-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 2px 2px 8px; }
+.hp-brand { display: flex; gap: 9px; align-items: center; min-width: 0; }
+.hp-logo {
+  width: 38px; height: 38px; border-radius: 12px; flex-shrink: 0; overflow: hidden;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  display: grid; place-items: center;
+  box-shadow: 0 6px 16px rgba(91, 92, 232, .32);
+}
+.hp-logo img { width: 30px; height: 30px; object-fit: contain; }
+.hp-brand b { display: block; font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 44vw; }
+.hp-brand small { color: var(--muted); font-size: 10px; display: block; }
+.hp-head-side { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.hp-test {
+  background: #fdf3e4; color: #b45309; border: 1px solid #f3ddb6;
+  font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px;
+}
+/* تایمر: قرص کوچک در هدر */
+.hp-timer-pill {
+  display: flex; align-items: center; gap: 5px;
+  background: #fff; border: 1.5px solid #e4e2ff; border-radius: 999px;
+  padding: 4px 12px; box-shadow: 0 4px 12px rgba(60, 60, 140, .08);
+}
+.hp-tp-ico { font-size: 13px; }
+.hp-timer-pill b { font-size: 16px; font-weight: 700; letter-spacing: 1px; }
+.hp-timer-pill.warn { border-color: #fbbf24; background: #fffbeb; }
+.hp-timer-pill.warn b { color: var(--warn); animation: tpulse 1.1s ease-in-out infinite; }
+.hp-timer-pill.out b { color: var(--bad); }
+@keyframes tpulse { 50% { opacity: .45; } }
+
+/* نوار پیشرفت زمان: باریک زیر هدر */
+.hp-count-bar { height: 4px; background: #e9ebf7; border-radius: 99px; overflow: hidden; flex-shrink: 0; }
+.hp-count-bar i { display: block; height: 100%; width: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--brand), var(--brand-2)); transition: width 1s linear; }
+.hp-count-bar i.warn { background: linear-gradient(90deg, #f59e0b, #f97316); }
+
+/* ── وضعیت: ردیف فشرده ── */
+.hp-status {
+  display: flex; gap: 10px; align-items: center;
+  border-radius: 16px; padding: clamp(8px, 1.4vh, 13px) clamp(12px, 2vw, 16px);
+  color: #fff; animation: rise .45s ease both;
+  box-shadow: 0 10px 24px rgba(30, 30, 90, .14); flex-shrink: 0;
+}
+.hp-status b { display: block; font-size: 14.5px; }
+.hp-st-txt { min-width: 0; }
+.hp-st-txt span:last-child { font-size: 11.5px; opacity: .95; line-height: 1.7; display: block; }
+.hp-st-icon {
+  width: 36px; height: 36px; border-radius: 12px; flex-shrink: 0;
+  display: grid; place-items: center; font-size: 17px; font-weight: 700;
+  background: rgba(255, 255, 255, .22);
+}
+.st-pending { background: linear-gradient(135deg, #5b5ce8, #8b5cf6); }
+.st-verifying { background: linear-gradient(135deg, #f59e0b, #f97316); }
+.st-paid { background: linear-gradient(135deg, #16a34a, #22c55e); }
+.st-expired { background: linear-gradient(135deg, #64748b, #94a3b8); }
+.st-failed { background: linear-gradient(135deg, #dc2626, #f87171); }
+
+.pulse { width: 11px; height: 11px; border-radius: 50%; background: #fff; animation: pulse 1.6s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,255,255,.7); } 70% { box-shadow: 0 0 0 11px rgba(255,255,255,0); } 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); } }
+.spinner {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, .35); border-top-color: #fff;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── کارت‌ها ── */
+.hp-card {
+  background: #fff; border-radius: 16px;
+  padding: clamp(10px, 1.8vh, 16px) clamp(12px, 2.5vw, 18px);
+  box-shadow: 0 8px 22px rgba(60, 60, 140, .08);
+  animation: rise .5s ease both; flex-shrink: 0;
+}
+.hp-card:nth-of-type(2) { animation-delay: .04s; }
+.hp-card:nth-of-type(3) { animation-delay: .08s; }
+@keyframes rise { from { transform: translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.hp-card-head { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); margin-bottom: 6px; gap: 6px; }
+.hp-head-tools { display: flex; align-items: center; gap: 6px; }
+.hp-chip {
+  font-size: 10.5px; font-weight: 700; padding: 1px 9px; border-radius: 999px;
+  background: #eef0ff; color: var(--brand);
+}
+.chip-bank { background: #f4f0ff; color: #7c3aed; }
+
+/* مبلغ: ردیف افقی عدد بزرگ + تومان */
+.hp-amount { text-align: center; }
+.hp-amount-row { display: flex; align-items: baseline; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.hp-amount-num { font-size: clamp(24px, 7vw, 31px); font-weight: 700; direction: ltr; line-height: 1.3; }
+.hp-amount-alt { color: var(--muted); font-size: 12px; }
+.hp-note {
+  font-size: 10.5px; color: #92400e; background: #fdf3e4;
+  border-radius: 10px; padding: 5px 10px; margin-top: 7px; line-height: 1.7;
+}
+
+/* کارت مقصد */
+.hp-card-dest { border: 1.5px solid #e4e2ff; background: linear-gradient(180deg, #fdfdff, #f7f6ff); }
+.hp-dest-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+.hp-dest-holder { font-weight: 700; font-size: 13.5px; }
+.hp-dest-order { font-size: 11.5px; color: var(--muted); white-space: nowrap; }
+.hp-card-num {
+  font-size: clamp(17px, 5.4vw, 21px); font-weight: 700; text-align: center; letter-spacing: 1.2px;
+  margin: 4px 0 8px; color: #3b3d8f; line-height: 1.5;
+}
+.hp-iban { margin-top: 8px; border-top: 1px dashed var(--line); padding-top: 7px; font-size: 11px; color: var(--muted); }
+.hp-iban-row { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
+.hp-iban-val { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.hp-iban-val b { font-size: 11.5px; color: var(--ink); overflow: hidden; text-overflow: ellipsis; }
+
+/* راهنما: یک خط فشرده */
+.hp-guide { flex-shrink: 0; }
+.hp-guide .hp-card-head { margin-bottom: 2px; }
+.hp-guide p { margin: 0; font-size: 11.5px; color: #3d4361; line-height: 1.8; }
+
+.hp-kv { display: flex; justify-content: space-between; font-size: 12.5px; padding: 5px 0; border-top: 1px dashed var(--line); margin-top: 5px; }
+.hp-kv span { color: var(--muted); }
+.hp-paid-meta { background: #f2fbf5; }
+
+/* ── دکمه‌ها ── */
+.hp-btn {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  border: 0; cursor: pointer; font-family: inherit; font-weight: 700;
+  width: 100%; padding: 11px 14px; border-radius: 13px; font-size: 13.5px;
+  transition: transform .12s ease, box-shadow .15s ease, filter .15s;
+  text-decoration: none; margin-top: 4px;
+}
+.hp-btn:active { transform: scale(.98); }
+.hp-btn[disabled] { opacity: .6; cursor: default; }
+.hp-btn-primary {
+  background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #fff;
+  box-shadow: 0 8px 20px rgba(91, 92, 232, .32);
+}
+.hp-btn-ghost { background: #eef0ff; color: var(--brand); }
+.hp-btn-claim {
+  background: linear-gradient(135deg, #16a34a, #22c55e); color: #fff;
+  box-shadow: 0 8px 20px rgba(22, 163, 74, .3);
+  font-size: 15px; padding: clamp(11px, 1.8vh, 14px); margin-top: 2px; flex-shrink: 0;
+}
+.hp-btn-big { padding: 14px; font-size: 15px; margin-top: 8px; }
+.hp-btn-xs { width: auto; padding: 4px 10px; font-size: 11px; border-radius: 9px; margin-top: 0; }
+
+/* ── فوتر: یک خط ── */
+.hp-foot {
+  display: flex; flex-wrap: nowrap; gap: 4px 14px; justify-content: center;
+  color: var(--muted); font-size: 10.5px; padding-top: 6px; flex-shrink: 0;
+  overflow: hidden; white-space: nowrap;
+}
+
+/* toast */
+.hp-toast {
+  position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+  background: #141627; color: #fff; border-radius: 13px; padding: 10px 18px;
+  font-size: 12.5px; box-shadow: 0 12px 34px rgba(0, 0, 0, .3);
+  animation: rise .3s ease; z-index: 60; max-width: 90%;
+}
+
+/* success check animation */
+.st-paid .hp-st-icon { animation: pop .6s cubic-bezier(.2, 1.4, .4, 1) both; }
+@keyframes pop { from { transform: scale(.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* ── دسکتاپ/تبلت: نفس بیشتر ── */
+@media (min-width: 480px) {
+  .hp-page { max-width: 470px; padding-top: 20px; }
+  .hp-main { justify-content: flex-start; gap: 14px; }
+  .hp-card { padding: 18px; }
+  .hp-status { padding: 16px 18px; }
+  .hp-btn-claim { margin-top: 10px; }
+}
+
+/* ── موبایل‌های کوتاه: فشرده‌تر ── */
+@media (max-height: 640px) and (max-width: 479px) {
+  body { font-size: 14px; line-height: 1.7; }
+  .hp-brand b { font-size: 12.5px; }
+  .hp-status b { font-size: 13.5px; }
+  .hp-st-icon { width: 32px; height: 32px; font-size: 15px; }
+  .hp-card-num { letter-spacing: .8px; }
+  .hp-guide .hp-card-head { display: none; } /* عنوان بخش راهنما مخفی — متن خودش کفایت می‌کند */
+  .hp-guide p { color: var(--muted); }
+  .hp-foot { font-size: 9.5px; }
+}
+@media (max-height: 560px) and (max-width: 479px) {
+  .hp-st-txt span:last-child { display: none; } /* فقط عنوان وضعیت */
+  .hp-amount-alt { font-size: 11px; }
+  .hp-dest-top { margin-bottom: 2px; }
+}
+/* ارتفاع خیلی کم (لنداسکیپ): بگذ اسکرول شود */
+@media (max-height: 460px) {
+  .hp-page { height: auto; }
+}

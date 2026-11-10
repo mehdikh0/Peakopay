@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Peakopay" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:fontFamily">@string/font_vazirmatn_cjk</item>
+    </style>
+
+    <style name="Theme.Peakopay.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/brand_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
+        <!-- پس‌زمینهٔ اسپلش روشن است → آیکون‌های تیرهٔ نوار وضعیت (دور ۲۵) -->
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="postSplashScreenTheme">@style/Theme.Peakopay</item>
+    </style>
+
+    <!-- فونت پیش‌فرض سیستمی؛ تایپوگرافی اصلی در Compose مدیریت می‌شود -->
+    <string name="font_vazirmatn_cjk" translatable="false">sans-serif</string>
+</resources>

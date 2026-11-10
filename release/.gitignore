@@ -1,0 +1,29 @@
+# Swap-and-go: generated files never belong in git
+backend/config/config.php
+backend/.env
+
+# Runtime data (keep folder structure, not contents)
+backend/storage/logs/*
+!backend/storage/logs/.gitkeep
+backend/storage/cache/*
+!backend/storage/cache/.gitkeep
+backend/storage/sessions/*
+!backend/storage/sessions/.gitkeep
+
+# Android build artifacts and signing secrets — never publish
+android/.gradle/
+android/.kotlin/
+android/build/
+android/app/build/
+android/local.properties
+android/keystore/
+android/keystore.properties
+android/.idea/
+android/*.iml
+
+# Release archives & internal history are published separately
+packages/
+docs/dev-history/
+
+.DS_Store
+Thumbs.db
